@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hybrid Pattern Example</title>
+    <script type="text/javascript">
+                    
+        function Person(name, age, job){
+            this.name = name;
+            this.age = age;
+            this.job = job;
+            this.friends = ["Shelby", "Court"];
+        }
+        // 创建一个类       
+        Person.prototype = {
+            constructor: Person,
+            sayName : function () {
+                alert(this.name);
+            }
+        };
+        // 原型来添加共享的方法和属性        
+        var person1 = new Person("Nicholas", 29, "Software Engineer");
+        var person2 = new Person("Greg", 27, "Doctor");
+        // 实例化两个对象
+        person1.friends.push("Van");
+        // 给对象1添加属性，不影响对象2
+        alert(person1.friends);    //"Shelby,Court,Van"
+        alert(person2.friends);    //"Shelby,Court"
+        alert(person1.friends === person2.friends);  //false
+        alert(person1.sayName === person2.sayName);  //true     
+    </script>
+</head>
+<body>
+
+</body>
+</html>
